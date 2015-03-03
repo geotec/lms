@@ -24,7 +24,7 @@
                 <td>{{ course.id }}</td>
                 <td><a href="{% url 'courses:details' course.id %}">{{ course.title }}</a></td>
                 <td>{{ course.instructor }}</td>
-                <td>{{ course.duration }}</td>
+                <td>{{ course.duration }} weeks</td>
             </tr>
         {% endfor %}
     <table>
