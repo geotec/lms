@@ -1,0 +1,78 @@
+{% load staticfiles %}
+{% load i18n admin_urls admin_static admin_modify bootstrapped_goodies_tags %}
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css" />
+
+    <!-- Le styles, placed after extrastyle to correctly override default styling -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="/static/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/overrides.css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" /> -->
+    <script type="text/javascript">
+    //<![CDATA[
+        window.__admin_media_prefix__ = "/static/admin/";
+        window.__admin_utc_offset__ = "\u002D18000";
+    //]]>
+    </script>
+    <script src="/static/admin/js/jquery-1.9.1.min.js"></script>
+    <script src="/static/admin/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+
+
+
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+
+
+    <meta name="robots" content="NONE,NOARCHIVE" />
+    <script type="text/javascript">
+    //<![CDATA[
+            (function($) {
+                $(document).ready(function() {
+                    $('input[type="submit"]').addClass('btn');
+                    $('[title]').tooltip();
+                });
+            }(jQuery));
+    //]]>
+    </script>
+
+
+  </head>
+
+  <body>
+
+  <div class = "container">
+    <div class=" navbar-fixed-top">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+                <ul class="nav navbar-nav">
+                    <a class="navbar-brand" href="#">Programming Django</a>
+                    <li><a href="{% url 'courses:index' %}">{% trans 'Course Catalog' %}</a></li>
+                    <li><a href="{% url 'courses:add' %}">{% trans 'Add Course' %}</a></li>
+                </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+  </div>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  </body>
+</html>

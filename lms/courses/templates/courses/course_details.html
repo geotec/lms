@@ -1,7 +1,36 @@
+{% extends "base.html" %}
 
-{% block title %}<h1>{{ course.title }}</h1>{% endblock %}
+
 {% block content %}
-<img src="{{ course.course_art.url }}" alt="course art" / >
-<a href="{% url 'courses:change' course.id %}">Edit</a>
+
+
+  <div class="container-fluid">
+    <ul class = "nav navbar-nav navbar-left">
+      <h1 class="navbar-text" style="font-size:40px;font-weight: 600">{{ course.title }}</h1>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+
+        <a href="{% url 'courses:change' course.id %}" class="btn btn-primary navbar-btn">Change</a>
+
+    </ul>
+  </div>
+
+
+<div class="row">
+    <div class="col-md-8">
+       <p class="lead">{{ course.description }}</p>
+    </div>
+    <div class="col-md-4">
+        <ul>
+            <li>Instructor: {{ course.instructor }}</li>
+            <li>Duration: {{ course.duration }} weeks</li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <img src="{{ course.course_art.url }}" alt="course art" width="200" class="img-rounded" / >
+    </div>
+</div>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 {% endblock %}

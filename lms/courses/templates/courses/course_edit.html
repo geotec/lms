@@ -1,40 +1,56 @@
+{% extends "base.html" %}
 
+{% block content %}
 
-{% if course.id %}
-<h1>Change Course</h1>
-<a href="{% url 'courses:details' course.id %}">View</a><br/>
-<form action="{% url 'courses:save' course.id%}"  method="POST" enctype=multipart/form-data>
-{% else %}
-<h1>Add Course</h1>
-<form action="{% url 'courses:save'%}"  method="POST" enctype=multipart/form-data>
-{% endif %}
-
-  {% csrf_token %}
-  {% if form.non_field_errors %}
-    <ul>
-      {% for error in form.non_field_errors %}
-        <li>{{ error }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-  {% for field in form %}
-  <div id="{{ field.auto_id }}_container">
-    {{ field.help_text }}
-    <div>
-      {{ field.label_tag }} {{ field }}
-    </div>
-    <div id="{{ field.auto_id }}_errors">
-      {{ field.errors }}
+  <div class="row">
+    <div class = "control-label col-md-3">
+      <h1> {% if course.id %}Change {% else %}Add {% endif %}Course </h1>
     </div>
   </div>
-  {% endfor %}
 
-  <input id="save_course" type="submit" value="Save" />
-</form>
+  <form {% if course.id %} action="{% url 'courses:save' course.id%}"  {% else %}
+        action="{% url 'courses:save'%}"{% endif %}
+        method="POST" enctype=multipart/form-data class="form-horizontal">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      <ul>
+        {% for error in form.non_field_errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
 
+    <div id="content-main">
+      <div class="_module _aligned" style="background:transparent">
 
-<a href="{% url 'courses:index'%}">Index</a>
+        {% for field in form %}
+        <div id="{{ field.auto_id }}_container">
+          {{ field.help_text }}
+          <div class="row">
+            <div class="form-group">
+              <div class = "control-label col-md-3">
+                {{ field.label_tag }}
+              </div>
+              <div class = "controls col-md-9">
+                 {{ field }}
+              </div>
+            </div>
+          </div>
+          <div id="{{ field.auto_id }}_errors">
+            {{ field.errors }}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="pull-right">
+      <input id="save_course" type="submit" value="Save" class="btn btn-primary default" />
+      {% if course.id %}<a href="{% url 'courses:details' course.id %}" class="btn btn-primary default">View</a>{% endif %}
+    </div>
 
+  </form>
+
+{% endblock %}
 
 
 
