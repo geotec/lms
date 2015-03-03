@@ -13,7 +13,7 @@ class Course(models.Model):
 
     title = models.CharField(max_length=200,
                              default='Name it something good')
-    description = models.TextField()
+    description = models.TextField(help_text="Provide some information about what students will learn.")
     instructor = models.CharField(max_length=200,
                                   default='Django Guru')
     duration = models.IntegerField(max_length=2, choices=DURATION_CHOICES, default=WEEKS2)
