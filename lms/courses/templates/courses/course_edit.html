@@ -1,0 +1,41 @@
+
+
+{% if course.id %}
+<h1>Change Course</h1>
+<a href="{% url 'courses:details' course.id %}">View</a><br/>
+<form action="{% url 'courses:save' course.id%}"  method="POST" enctype=multipart/form-data>
+{% else %}
+<h1>Add Course</h1>
+<form action="{% url 'courses:save'%}"  method="POST" enctype=multipart/form-data>
+{% endif %}
+
+  {% csrf_token %}
+  {% if form.non_field_errors %}
+    <ul>
+      {% for error in form.non_field_errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  {% for field in form %}
+  <div id="{{ field.auto_id }}_container">
+    {{ field.help_text }}
+    <div>
+      {{ field.label_tag }} {{ field }}
+    </div>
+    <div id="{{ field.auto_id }}_errors">
+      {{ field.errors }}
+    </div>
+  </div>
+  {% endfor %}
+
+  <input id="save_course" type="submit" value="Save" />
+</form>
+
+
+<a href="{% url 'courses:index'%}">Index</a>
+
+
+
+
+

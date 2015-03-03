@@ -1,0 +1,7 @@
+
+{% block title %}<h1>{{ course.title }}</h1>{% endblock %}
+{% block content %}
+<img src="{{ course.course_art.url }}" alt="course art" / >
+<a href="{% url 'courses:change' course.id %}">Edit</a>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% endblock %}

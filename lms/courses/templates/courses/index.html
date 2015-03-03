@@ -1,0 +1,17 @@
+{% block content %}
+<a href="{% url 'courses:add'%}">Add</a>
+{% if course_list %}
+    <table>
+    {% for course in course_list %}
+        <tr>
+        <td>{{ course.id }}</td>
+        <td>{{ course.title }}</td>
+        <td><a href="{% url 'courses:details' course.id %}">View</a></td>
+        <td><a href="{% url 'courses:change' course.id %}">Change</a></td>
+        </tr>
+    {% endfor %}
+    <table>
+{% else %}
+    <p>No courses are available.</p>
+{% endif %}
+{% endblock %}
