@@ -25,15 +25,19 @@
 
         {% for field in form %}
         <div id="{{ field.auto_id }}_container">
-          {{ field.help_text }}
+
           <div class="row">
             <div class="form-group">
               <div class = "control-label col-md-3">
                 {{ field.label_tag }}
               </div>
               <div class = "controls col-md-9">
-                 {{ field|addcss:"form-control" }}
-
+                {% if field.label == "Course art" %}
+                  {{ field }}
+                {% else %}
+                  {{ field|addcss:"form-control" }}
+                {% endif %}
+                <span class="help-block">{{ field.help_text }}</span>
               </div>
             </div>
           </div>

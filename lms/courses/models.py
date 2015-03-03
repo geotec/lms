@@ -11,8 +11,7 @@ DURATION_CHOICES = ((WEEKS2, '2 Weeks'),
 class Course(models.Model):
 
 
-    title = models.CharField(max_length=200,
-                             default='Name it something good')
+    title = models.CharField(max_length=200)
     description = models.TextField(help_text="Provide some information about what students will learn.")
     instructor = models.CharField(max_length=200,
                                   default='Django Guru')
@@ -21,7 +20,7 @@ class Course(models.Model):
 
 class CourseForm(ModelForm):
     duration = forms.ChoiceField(widget=forms.RadioSelect, choices=DURATION_CHOICES)
-
+    title = forms.CharField(initial='Name it something good')
     class Meta:
         model = Course
         fields = ['title', 'description', 'instructor', 'duration', 'course_art']
